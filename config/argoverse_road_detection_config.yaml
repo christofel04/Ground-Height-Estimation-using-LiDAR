@@ -1,0 +1,39 @@
+data_dir: '/home/anshul/es3cap/my_codes/GndNet/data/'
+
+data_train_dir : "/home/ofel04/Downloads/tracking_train1_v1.1/argoverse-tracking/train1" #"/media/ofel04/66ECDBFDECDBC609/tracking_train1_v1.1/argoverse-tracking/train1/"
+data_train_max_number_of_log : 1 #20 
+data_val_dir : "/home/ofel04/Downloads/tracking_train1_v1.1/argoverse-tracking/train1" #"/media/ofel04/66ECDBFDECDBC609/tracking_val_v1.1/argoverse-tracking/val/"
+is_DA_evaluation_eval : True
+is_save_DA_evaluation_eval : True
+DA_evaluation_result_folder : "./DA_Evaluation_Result_Folder"
+
+LIST_OF_LOG_FOR_VISUALIZATION : [ "e17eed4f-3ffd-3532-ab89-41a3f24cf226" ,"b3def699-884b-3c9e-87e1-1ab76c618e0b" ,"af706af1-a226-3f6f-8d65-b1f4b9457c48","11953248-1195-1195-1195-511954366464","64c12551-adb9-36e3-a0c1-e43a0e9f3845" , "6162d72f-2990-3a30-9bba-19bbd882985c", "9da4ca63-f524-3b38-8c8b-624f17518574" ]
+shift_cloud: true
+lidar_height: 1.733
+num_points: 100000
+grid_range: [-50, -50, 70 , 50]  #[-50, -50, 50, 50] 
+
+# voxel_generator:
+# pc_range: [-49.4, -50, -4, 50.6, 50, 4] # cmcdot grid origin is at base_link not the velodyne so have to crop points from 0.6
+pc_range: [-50, -50, -4, 70, 50, 4] # cmcdot grid origin is at base_link not the velodyne so have to shift cropping points
+voxel_size : [0.2, 0.2, 8]
+max_points_voxel : 100
+max_voxels: 23000 #10000
+input_features: 4
+
+# model_param
+batch_size: 2
+lr: 0.01
+momentum: 0.9
+weight_decay: 0.0005
+epochs: 150 #120
+use_norm: false
+clip: 0.25 # gradient clipping
+
+# Voxel Feature Extractor
+vfe_filters: [64] # only one filter for now
+with_distance: false
+
+# loss_param
+alpha: 0.9 # per cell loss
+beta: 0.1 # Smoothness loss

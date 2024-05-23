@@ -138,8 +138,10 @@ class segnetGndEst(nn.Module):
         up2 = self.up2(down2, indices_2, unpool_shape2)
         up1 = self.up1(up2, indices_1, unpool_shape1)
         gnd_pred = self.regressor(up1)
+        gnd_net_output_pred = nn.Upsample( size=(600,500)).cuda()(gnd_pred )
+        #gnd_net_output_pred = nn.ReLU().cuda()( gnd_net_output_pred )
 
-        return gnd_pred
+        return gnd_net_output_pred
 
 
 # class segnet(nn.Module):
